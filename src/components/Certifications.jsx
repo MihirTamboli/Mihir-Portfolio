@@ -1,31 +1,57 @@
 import { motion } from 'framer-motion'
-import { FaCertificate, FaGoogle, FaGraduationCap, FaNetworkWired } from 'react-icons/fa'
+import { FaCertificate, FaGoogle, FaGraduationCap, FaNetworkWired, FaAward, FaCloud, FaBrain, FaChartLine } from 'react-icons/fa'
+import { SiAmazonaws } from 'react-icons/si'
 
 const Certifications = () => {
   const certifications = [
     {
-      title: 'Google Data Analytics Foundations',
-      issuer: 'Coursera',
-      icon: FaGoogle,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-500/10',
-      borderColor: 'border-blue-500/30',
+      title: 'AWS',
+      issuer: 'Amazon Web Services',
+      icon: SiAmazonaws,
+      gradient: 'from-orange-500 to-yellow-500',
+      borderGradient: 'from-orange-400 to-yellow-400',
     },
     {
       title: 'Computer Vision',
       issuer: 'NPTEL',
       icon: FaGraduationCap,
-      color: 'text-red-500',
-      bgColor: 'bg-red-500/10',
-      borderColor: 'border-red-500/30',
+      gradient: 'from-red-500 to-pink-500',
+      borderGradient: 'from-red-400 to-pink-400',
+    },
+    {
+      title: 'Convolutional Neural Networks',
+      issuer: 'Deep Learning Specialization',
+      icon: FaBrain,
+      gradient: 'from-purple-500 to-indigo-500',
+      borderGradient: 'from-purple-400 to-indigo-400',
+    },
+    {
+      title: 'Data Analytics',
+      issuer: 'Google / Coursera',
+      icon: FaChartLine,
+      gradient: 'from-blue-500 to-cyan-500',
+      borderGradient: 'from-blue-400 to-cyan-400',
+    },
+    {
+      title: 'Neural Networks and Deep Learning',
+      issuer: 'Deep Learning Specialization',
+      icon: FaBrain,
+      gradient: 'from-green-500 to-emerald-500',
+      borderGradient: 'from-green-400 to-emerald-400',
+    },
+    {
+      title: 'Google Data Analytics Foundations',
+      issuer: 'Coursera',
+      icon: FaGoogle,
+      gradient: 'from-blue-500 to-cyan-500',
+      borderGradient: 'from-blue-400 to-cyan-400',
     },
     {
       title: 'Cisco Networking Fundamentals',
       issuer: 'Cisco',
       icon: FaNetworkWired,
-      color: 'text-cyan-500',
-      bgColor: 'bg-cyan-500/10',
-      borderColor: 'border-cyan-500/30',
+      gradient: 'from-cyan-500 to-blue-500',
+      borderGradient: 'from-cyan-400 to-blue-400',
     },
   ]
 
@@ -40,52 +66,86 @@ const Certifications = () => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    },
   }
 
   return (
-    <section id="certifications" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="certifications" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 relative">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <motion.span
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block text-electric-blue text-sm font-semibold mb-4 px-4 py-2 glass-effect rounded-full"
+          >
+            ACHIEVEMENTS
+          </motion.span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
             <span className="text-gradient">Certifications</span>
           </h2>
-          <div className="w-24 h-1 bg-electric-blue mx-auto"></div>
+          <div className="w-32 h-1.5 bg-gradient-to-r from-transparent via-electric-blue to-transparent mx-auto rounded-full" />
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          viewport={{ once: false, margin: '-100px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {certifications.map((cert, index) => {
             const IconComponent = cert.icon
             return (
               <motion.div
-                key={index}
+                key={`${cert.title}-${index}`}
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className={`${cert.bgColor} ${cert.borderColor} border-2 rounded-lg p-6 hover:border-opacity-60 transition-all duration-300`}
+                whileHover={{ y: -10, scale: 1.05, rotateY: 5 }}
+                className="relative glass-effect-strong rounded-2xl p-8 border border-electric-blue/20 card-hover group overflow-hidden"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className={`${cert.color} text-4xl mb-4`}>
-                    <IconComponent />
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${cert.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  {/* Icon Container */}
+                  <div className={`relative mb-6 p-6 bg-gradient-to-br ${cert.gradient} rounded-2xl shadow-2xl group-hover:scale-110 transition-transform duration-500`}>
+                    <IconComponent className="text-4xl text-white" />
+                    <div className="absolute -top-2 -right-2">
+                      <FaAward className="text-electric-blue text-xl animate-pulse" />
+                    </div>
                   </div>
-                  <FaCertificate className={`${cert.color} text-2xl mb-2`} />
-                  <h3 className="text-xl font-semibold text-white mb-2">
+
+                  {/* Certificate Icon */}
+                  <div className="mb-4">
+                    <FaCertificate className={`text-3xl bg-gradient-to-r ${cert.borderGradient} bg-clip-text text-transparent`} />
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-text-primary mb-3 group-hover:text-gradient transition-all">
                     {cert.title}
                   </h3>
-                  <p className="text-gray-400 text-sm">{cert.issuer}</p>
+                  <p className="text-text-secondary font-semibold text-lg">{cert.issuer}</p>
+
+                  {/* Decorative Elements */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${cert.borderGradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
                 </div>
+
+                {/* Shine Effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               </motion.div>
             )
           })}

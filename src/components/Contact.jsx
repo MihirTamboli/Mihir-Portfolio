@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,13 +23,10 @@ const Contact = () => {
     setIsSubmitting(true)
     setSubmitStatus(null)
 
-    // Simulate form submission (replace with actual form handling service)
     setTimeout(() => {
       setIsSubmitting(false)
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
-      
-      // Reset status message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000)
     }, 1000)
   }
@@ -40,18 +37,21 @@ const Contact = () => {
       label: 'Email',
       value: 'mihirtamboli262003@gmail.com',
       link: 'mailto:mihirtamboli262003@gmail.com',
+      gradient: 'from-red-500 to-pink-500',
     },
     {
       icon: FaPhone,
       label: 'Phone',
       value: '+91-9028328108',
       link: 'tel:+919028328108',
+      gradient: 'from-green-500 to-emerald-500',
     },
     {
       icon: FaMapMarkerAlt,
       label: 'Location',
       value: 'Maharashtra, India',
       link: null,
+      gradient: 'from-blue-500 to-cyan-500',
     },
   ]
 
@@ -60,53 +60,87 @@ const Contact = () => {
       icon: FaGithub,
       label: 'GitHub',
       url: 'https://github.com/MihirTamboli',
-      color: 'hover:text-gray-300',
+      gradient: 'from-gray-400 to-gray-600',
     },
     {
       icon: FaLinkedin,
       label: 'LinkedIn',
       url: 'https://www.linkedin.com/in/mihir-tamboli-033690284/',
-      color: 'hover:text-blue-400',
+      gradient: 'from-blue-500 to-blue-700',
     },
     {
       icon: FaEnvelope,
       label: 'Email',
       url: 'mailto:mihirtamboli262003@gmail.com',
-      color: 'hover:text-red-400',
+      gradient: 'from-red-500 to-red-700',
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  }
+
   return (
-    <section id="contact" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-6xl">
+    <section id="contact" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 relative">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <motion.span
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block text-electric-blue text-sm font-semibold mb-4 px-4 py-2 glass-effect rounded-full"
+          >
+            GET IN TOUCH
+          </motion.span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
             Get In <span className="text-gradient">Touch</span>
           </h2>
-          <div className="w-24 h-1 bg-electric-blue mx-auto"></div>
-          <p className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto">
+          <div className="w-32 h-1.5 bg-gradient-to-r from-transparent via-electric-blue to-transparent mx-auto rounded-full mb-6" />
+          <p className="text-text-secondary text-lg max-w-3xl mx-auto leading-relaxed">
             I'm always open to discussing new opportunities, interesting projects, 
             or just having a chat about technology and innovation.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid md:grid-cols-2 gap-12 lg:gap-16"
+        >
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div variants={itemVariants} className="glass-effect-strong p-8 rounded-2xl">
+            <h3 className="text-3xl font-bold text-gradient mb-6 flex items-center gap-3">
+              <FaPaperPlane className="text-electric-blue" />
+              Send a Message
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-gray-300 mb-2">
+                <label htmlFor="name" className="block text-text-secondary mb-2 font-semibold">
                   Name
                 </label>
                 <input
@@ -116,13 +150,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 text-white transition-all"
+                  className="w-full px-4 py-3 glass-effect border border-electric-blue/20 rounded-xl focus:outline-none focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 text-text-primary transition-all"
                   placeholder="Your Name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-gray-300 mb-2">
+                <label htmlFor="email" className="block text-text-secondary mb-2 font-semibold">
                   Email
                 </label>
                 <input
@@ -132,13 +166,13 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 text-white transition-all"
+                  className="w-full px-4 py-3 glass-effect border border-electric-blue/20 rounded-xl focus:outline-none focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 text-text-primary transition-all"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-gray-300 mb-2">
+                <label htmlFor="message" className="block text-text-secondary mb-2 font-semibold">
                   Message
                 </label>
                 <textarea
@@ -148,7 +182,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows="6"
-                  className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:outline-none focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 text-white transition-all resize-none"
+                  className="w-full px-4 py-3 glass-effect border border-electric-blue/20 rounded-xl focus:outline-none focus:border-electric-blue focus:ring-2 focus:ring-electric-blue/20 text-text-primary transition-all resize-none"
                   placeholder="Your message here..."
                 />
               </div>
@@ -157,62 +191,68 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400"
+                  className="p-4 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/50 rounded-xl text-green-400 font-semibold"
                 >
-                  Thank you! Your message has been sent successfully.
+                  ✓ Thank you! Your message has been sent successfully.
                 </motion.div>
               )}
 
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-3 bg-electric-blue text-deep-navy font-semibold rounded-lg glow-effect hover:bg-neon-cyan transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full px-8 py-4 bg-gradient-to-r from-electric-blue to-neon-cyan text-dark-bg font-bold rounded-xl glow-effect hover:shadow-lg hover:shadow-electric-blue/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-dark-bg border-t-transparent rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane />
+                    Send Message
+                  </>
+                )}
+              </motion.button>
             </form>
           </motion.div>
 
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            {/* Contact Details */}
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => {
-                const IconComponent = info.icon
-                return (
-                  <motion.a
-                    key={index}
-                    href={info.link || '#'}
-                    target={info.link ? '_blank' : undefined}
-                    rel={info.link ? 'noopener noreferrer' : undefined}
-                    whileHover={{ scale: 1.05, x: 10 }}
-                    className={`flex items-center gap-4 p-4 bg-gray-900/50 rounded-lg border border-gray-800 hover:border-electric-blue/50 transition-all duration-300 ${
-                      !info.link ? 'cursor-default' : 'cursor-pointer'
-                    }`}
-                  >
-                    <div className="text-electric-blue text-2xl">
-                      <IconComponent />
-                    </div>
-                    <div>
-                      <p className="text-gray-400 text-sm">{info.label}</p>
-                      <p className="text-white font-medium">{info.value}</p>
-                    </div>
-                  </motion.a>
-                )
-              })}
+          <motion.div variants={itemVariants} className="space-y-8">
+            <div>
+              <h3 className="text-3xl font-bold text-gradient mb-8">Contact Information</h3>
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => {
+                  const IconComponent = info.icon
+                  return (
+                    <motion.a
+                      key={index}
+                      href={info.link || '#'}
+                      target={info.link ? '_blank' : undefined}
+                      rel={info.link ? 'noopener noreferrer' : undefined}
+                      whileHover={{ scale: 1.05, x: 10 }}
+                      className={`flex items-center gap-4 p-6 glass-effect-strong rounded-xl border border-electric-blue/20 hover:border-electric-blue/50 transition-all group ${
+                        !info.link ? 'cursor-default' : 'cursor-pointer'
+                      }`}
+                    >
+                      <div className={`p-4 bg-gradient-to-br ${info.gradient} rounded-xl group-hover:scale-110 transition-transform`}>
+                        <IconComponent className="text-2xl text-white" />
+                      </div>
+                      <div>
+                        <p className="text-text-secondary text-sm font-semibold mb-1">{info.label}</p>
+                        <p className="text-text-primary font-bold text-lg">{info.value}</p>
+                      </div>
+                    </motion.a>
+                  )
+                })}
+              </div>
             </div>
 
             {/* Social Links */}
             <div>
-              <h3 className="text-xl font-semibold text-electric-blue mb-4">
-                Connect With Me
-              </h3>
+              <h3 className="text-2xl font-bold text-gradient mb-6">Connect With Me</h3>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon
@@ -222,19 +262,21 @@ const Contact = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.2, y: -5 }}
+                      whileHover={{ scale: 1.2, y: -5, rotate: 5 }}
                       whileTap={{ scale: 0.9 }}
-                      className={`text-3xl text-gray-400 ${social.color} transition-colors duration-300 glow-effect`}
+                      className={`p-4 glass-effect-strong rounded-xl border border-electric-blue/20 hover:border-electric-blue/50 transition-all group`}
                       aria-label={social.label}
                     >
-                      <IconComponent />
+                      <div className={`p-3 bg-gradient-to-br ${social.gradient} rounded-lg group-hover:scale-110 transition-transform`}>
+                        <IconComponent className="text-2xl text-white" />
+                      </div>
                     </motion.a>
                   )
                 })}
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Footer */}
@@ -242,9 +284,11 @@ const Contact = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="mt-20 pt-8 border-t border-gray-800 text-center text-gray-500"
+        className="mt-20 pt-8 border-t border-electric-blue/20 text-center text-text-secondary"
       >
-        <p>© {new Date().getFullYear()} Mihir Tamboli. All rights reserved.</p>
+        <p className="text-lg">
+          © {new Date().getFullYear()} <span className="text-gradient font-bold">Mihir Tamboli</span>. All rights reserved.
+        </p>
       </motion.footer>
     </section>
   )

@@ -6,6 +6,8 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Certifications from './components/Certifications'
 import Contact from './components/Contact'
+import ParticleBackground from './components/ParticleBackground'
+import CustomCursor from './components/CustomCursor'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -32,14 +34,18 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-deep-navy" style={{ backgroundColor: '#0A0E27' }}>
-      <Navbar activeSection={activeSection} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Certifications />
-      <Contact />
+    <div className="min-h-screen relative overflow-x-hidden">
+      <ParticleBackground />
+      <CustomCursor />
+      <div className="relative z-10">
+        <Navbar activeSection={activeSection} />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Certifications />
+        <Contact />
+      </div>
     </div>
   )
 }

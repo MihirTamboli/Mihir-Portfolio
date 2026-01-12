@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaDownload } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaDownload, FaArrowDown } from 'react-icons/fa'
 
 const Hero = () => {
   const roles = ['Data Analyst', 'AI Engineer', 'Backend Developer']
   const [currentRole, setCurrentRole] = useState(0)
   const [displayText, setDisplayText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const typeSpeed = 100
@@ -36,6 +37,18 @@ const Hero = () => {
     return () => clearTimeout(timer)
   }, [displayText, isDeleting, currentRole, roles])
 
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -44,143 +57,204 @@ const Hero = () => {
   }
 
   const handleDownloadResume = () => {
-    // Create a link element and trigger download
-    // You'll need to add your resume file to public folder
     const link = document.createElement('a')
-    link.href = '/resume.pdf' // Update with your resume file name
+    link.href = '/resume.pdf'
     link.download = 'Mihir_Tamboli_Resume.pdf'
     link.click()
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    },
+  }
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Animated Background */}
+      {/* Enhanced Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-electric-blue/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-cyan/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div 
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-electric-blue/30 rounded-full blur-[100px] animate-float"
+          style={{
+            transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+          }}
+        />
+        <div 
+          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent-purple/30 rounded-full blur-[120px] animate-float-delayed"
+          style={{
+            transform: `translate(${-mousePosition.x * 0.3}px, ${-mousePosition.y * 0.3}px)`,
+          }}
+        />
+        <div 
+          className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-neon-cyan/20 rounded-full blur-[80px] animate-float"
+          style={{
+            transform: `translate(${mousePosition.x * 0.4}px, ${mousePosition.y * 0.4}px)`,
+          }}
+        />
+      </div>
+
+      {/* Gradient Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-electric-blue/10 via-transparent to-accent-purple/10 animate-gradient" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-center"
+        >
+          {/* Greeting Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={itemVariants}
+            className="inline-block mb-6"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
-              Hi, I'm <span className="text-gradient">Mihir Tamboli</span>
-            </h1>
-            
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 min-h-[60px] sm:min-h-[80px] md:min-h-[96px] flex items-center justify-center flex-wrap">
-              <span className="text-gray-300">I'm a </span>
-              <span className="text-electric-blue ml-2 min-w-[200px] sm:min-w-[300px] md:min-w-[400px] text-left inline-block">
-                {displayText || 'Data Analyst'}
-                <span className="animate-pulse ml-1">|</span>
-              </span>
+            <div className="glass-effect px-6 py-2 rounded-full border border-electric-blue/30">
+              <span className="text-electric-blue text-sm font-medium">👋 Welcome to my portfolio</span>
             </div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8 px-4"
-            >
-              Computer Science undergraduate with hands-on experience in Python development, 
-              data analysis, backend systems, and AI/ML projects. Passionate about building 
-              intelligent, data-driven solutions and scalable software applications.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-            >
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="px-8 py-3 bg-electric-blue text-deep-navy font-semibold rounded-lg glow-effect hover:bg-neon-cyan transition-all duration-300 transform hover:scale-105"
-              >
-                View Projects
-              </button>
-              <button
-                onClick={handleDownloadResume}
-                className="px-8 py-3 border-2 border-electric-blue text-electric-blue font-semibold rounded-lg glow-effect hover:bg-electric-blue/10 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
-              >
-                <FaDownload /> Download Resume
-              </button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex items-center justify-center gap-6"
-            >
-              <a
-                href="https://github.com/MihirTamboli"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl text-gray-400 hover:text-electric-blue transition-colors duration-300 glow-effect"
-                aria-label="GitHub"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/mihir-tamboli-033690284/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl text-gray-400 hover:text-electric-blue transition-colors duration-300 glow-effect"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="mailto:mihirtamboli262003@gmail.com"
-                className="text-2xl text-gray-400 hover:text-electric-blue transition-colors duration-300 glow-effect"
-                aria-label="Email"
-              >
-                <FaEnvelope />
-              </a>
-              <a
-                href="tel:+919028328108"
-                className="text-2xl text-gray-400 hover:text-electric-blue transition-colors duration-300 glow-effect"
-                aria-label="Phone"
-              >
-                <FaPhone />
-              </a>
-            </motion.div>
-
-            {/* Location */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-8 text-gray-500 text-sm sm:text-base"
-            >
-              📍 Maharashtra, India
-            </motion.p>
           </motion.div>
-        </div>
+
+          {/* Main Heading */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight"
+          >
+            <span className="block text-text-primary">Hi, I'm</span>
+            <span className="block text-gradient mt-2">Mihir Tamboli</span>
+          </motion.h1>
+          
+          {/* Typing Animation */}
+          <motion.div
+            variants={itemVariants}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 min-h-[80px] sm:min-h-[100px] flex items-center justify-center flex-wrap"
+          >
+            <span className="text-text-secondary mr-3">I'm a</span>
+            <span className="text-gradient-2 inline-block min-w-[250px] sm:min-w-[350px] md:min-w-[450px] text-left">
+              {displayText || 'Data Analyst'}
+              <span className="inline-block w-1 h-8 bg-electric-blue ml-2 animate-pulse" />
+            </span>
+          </motion.div>
+
+          {/* Bio */}
+          <motion.p
+            variants={itemVariants}
+            className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-12 px-4 leading-relaxed"
+          >
+            Computer Science undergraduate with hands-on experience in Python development, 
+            data analysis, backend systems, and AI/ML projects. Passionate about building 
+            intelligent, data-driven solutions and scalable software applications.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('projects')}
+              className="group relative px-10 py-4 bg-gradient-to-r from-electric-blue to-neon-cyan text-dark-bg font-bold rounded-xl overflow-hidden glow-effect"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                View Projects
+                <FaArrowDown className="group-hover:translate-y-1 transition-transform" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-electric-blue opacity-0 group-hover:opacity-100 transition-opacity" />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleDownloadResume}
+              className="group glass-effect-strong px-10 py-4 border-2 border-electric-blue/50 text-electric-blue font-bold rounded-xl glow-effect hover:border-electric-blue transition-all duration-300"
+            >
+              <span className="flex items-center gap-2">
+                <FaDownload className="group-hover:animate-bounce" />
+                Download Resume
+              </span>
+            </motion.button>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center justify-center gap-8 mb-8"
+          >
+            {[
+              { icon: FaGithub, href: 'https://github.com/MihirTamboli', label: 'GitHub', color: 'hover:text-gray-300' },
+              { icon: FaLinkedin, href: 'https://www.linkedin.com/in/mihir-tamboli-033690284/', label: 'LinkedIn', color: 'hover:text-blue-400' },
+              { icon: FaEnvelope, href: 'mailto:mihirtamboli262003@gmail.com', label: 'Email', color: 'hover:text-red-400' },
+              { icon: FaPhone, href: 'tel:+919028328108', label: 'Phone', color: 'hover:text-green-400' },
+            ].map((social, index) => {
+              const Icon = social.icon
+              return (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target={social.href.startsWith('http') ? '_blank' : undefined}
+                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  whileHover={{ scale: 1.2, y: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className={`text-3xl text-text-secondary ${social.color} transition-all duration-300 glass-effect p-4 rounded-full`}
+                  aria-label={social.label}
+                >
+                  <Icon />
+                </motion.a>
+              )
+            })}
+          </motion.div>
+
+          {/* Location */}
+          <motion.p
+            variants={itemVariants}
+            className="text-text-secondary text-base sm:text-lg flex items-center justify-center gap-2"
+          >
+            <span className="text-electric-blue">📍</span>
+            Maharashtra, India
+          </motion.p>
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Enhanced Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-electric-blue rounded-full flex justify-center"
+          animate={{ y: [0, 15, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex flex-col items-center gap-2 cursor-pointer"
+          onClick={() => scrollToSection('about')}
         >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-3 bg-electric-blue rounded-full mt-2"
-          />
+          <span className="text-text-secondary text-sm font-medium">Scroll</span>
+          <div className="w-6 h-10 border-2 border-electric-blue/50 rounded-full flex justify-center p-2 glass-effect">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-1.5 h-3 bg-gradient-to-b from-electric-blue to-neon-cyan rounded-full"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </section>

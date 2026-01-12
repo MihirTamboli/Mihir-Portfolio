@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FaGraduationCap, FaUniversity } from 'react-icons/fa'
+import { FaGraduationCap, FaUniversity, FaCode, FaRocket } from 'react-icons/fa'
 
 const About = () => {
   const containerVariants = {
@@ -7,57 +7,80 @@ const About = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    },
   }
 
   return (
-    <section id="about" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-6xl">
+    <section id="about" className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 relative">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <motion.span
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block text-electric-blue text-sm font-semibold mb-4 px-4 py-2 glass-effect rounded-full"
+          >
+            ABOUT ME
+          </motion.span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
             About <span className="text-gradient">Me</span>
           </h2>
-          <div className="w-24 h-1 bg-electric-blue mx-auto"></div>
+          <div className="w-32 h-1.5 bg-gradient-to-r from-transparent via-electric-blue to-transparent mx-auto rounded-full" />
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-12"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid md:grid-cols-2 gap-12 lg:gap-16"
         >
           {/* Professional Summary */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-semibold text-electric-blue mb-4">
-              Professional Summary
-            </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">
+          <motion.div 
+            variants={itemVariants} 
+            className="space-y-6 glass-effect-strong p-8 rounded-2xl card-hover"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 bg-gradient-to-br from-electric-blue/20 to-neon-cyan/20 rounded-xl">
+                <FaCode className="text-3xl text-electric-blue" />
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-gradient">
+                Professional Summary
+              </h3>
+            </div>
+            <p className="text-text-secondary text-lg leading-relaxed">
               I'm a Computer Science undergraduate passionate about leveraging technology 
               to solve real-world problems. With hands-on experience in Python development, 
               I've worked on various projects spanning backend systems, data analysis, and 
               AI/ML applications.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-text-secondary text-lg leading-relaxed">
               My expertise includes building scalable backend solutions, analyzing complex 
               datasets to extract meaningful insights, and developing intelligent systems 
               using machine learning frameworks. I'm particularly interested in roles that 
               combine data-driven decision making with analytical problem-solving.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-text-secondary text-lg leading-relaxed">
               I thrive in environments where I can apply my technical skills to create 
               innovative solutions and contribute to impactful projects. Whether it's 
               developing robust APIs, training ML models, or designing database schemas, 
@@ -66,31 +89,39 @@ const About = () => {
           </motion.div>
 
           {/* Education */}
-          <motion.div variants={itemVariants} className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-semibold text-electric-blue mb-4">
-              Education
-            </h3>
+          <motion.div 
+            variants={itemVariants} 
+            className="space-y-6"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 bg-gradient-to-br from-accent-purple/20 to-accent-pink/20 rounded-xl">
+                <FaRocket className="text-3xl text-accent-purple" />
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-gradient-2">
+                Education
+              </h3>
+            </div>
             
             <div className="space-y-6">
               {/* B.Tech */}
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="bg-gray-900/50 p-6 rounded-lg border border-gray-800 hover:border-electric-blue/50 transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="glass-effect-strong p-6 rounded-xl border border-electric-blue/20 card-hover group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="text-electric-blue text-2xl mt-1">
-                    <FaGraduationCap />
+                  <div className="p-3 bg-gradient-to-br from-electric-blue/30 to-neon-cyan/30 rounded-lg group-hover:scale-110 transition-transform">
+                    <FaGraduationCap className="text-2xl text-electric-blue" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-xl font-semibold text-white mb-2">
+                    <h4 className="text-xl font-bold text-text-primary mb-2 group-hover:text-gradient transition-colors">
                       B.Tech Computer Engineering
                     </h4>
-                    <p className="text-electric-blue mb-2 flex items-center gap-2">
+                    <p className="text-electric-blue mb-2 flex items-center gap-2 font-semibold">
                       <FaUniversity className="text-sm" />
                       MIT ADT Pune
                     </p>
-                    <p className="text-gray-400">
-                      CGPA: <span className="text-white font-semibold">7.25</span>
+                    <p className="text-text-secondary">
+                      CGPA: <span className="text-electric-blue font-bold text-lg">7.25</span>
                     </p>
                   </div>
                 </div>
@@ -98,19 +129,19 @@ const About = () => {
 
               {/* Diploma */}
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="bg-gray-900/50 p-6 rounded-lg border border-gray-800 hover:border-electric-blue/50 transition-all duration-300"
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="glass-effect-strong p-6 rounded-xl border border-accent-purple/20 card-hover group"
               >
                 <div className="flex items-start gap-4">
-                  <div className="text-electric-blue text-2xl mt-1">
-                    <FaGraduationCap />
+                  <div className="p-3 bg-gradient-to-br from-accent-purple/30 to-accent-pink/30 rounded-lg group-hover:scale-110 transition-transform">
+                    <FaGraduationCap className="text-2xl text-accent-purple" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-xl font-semibold text-white mb-2">
+                    <h4 className="text-xl font-bold text-text-primary mb-2 group-hover:text-gradient-2 transition-colors">
                       Diploma in Computer Engineering
                     </h4>
-                    <p className="text-gray-400">
-                      Percentage: <span className="text-white font-semibold">76%</span>
+                    <p className="text-text-secondary">
+                      Percentage: <span className="text-accent-purple font-bold text-lg">76%</span>
                     </p>
                   </div>
                 </div>
