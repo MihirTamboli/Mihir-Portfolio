@@ -7,15 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'electric-blue': '#00D9FF',
-        'neon-cyan': '#00FFFF',
-        'deep-navy': '#0A0E27',
-        'dark-bg': '#050816',
-        'card-dark': '#151030',
-        'accent-purple': '#915EFF',
-        'accent-pink': '#FF006E',
-        'text-primary': '#FFFFFF',
-        'text-secondary': '#B8B8D4',
+        'electric-blue': '#3B82F6', // primary accent
+        'neon-cyan': '#22D3EE',    // secondary accent
+        'deep-navy': '#0B1120',    // background
+        'dark-bg': '#0B1120',
+        'card-dark': '#111827',
+        'accent-purple': '#7C3AED',
+        'accent-pink': '#EC4899',
+        'text-primary': '#F9FAFB',
+        'text-secondary': '#9CA3AF',
+        'border-dark': '#1F2937',
       },
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',

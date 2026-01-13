@@ -87,7 +87,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 lg:pt-0">
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
@@ -137,7 +137,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight"
           >
-            <span className="block text-text-primary">Hi, I'm</span>
+            <span className="block text-text-primary">Hi, I’m</span>
             <span className="block text-gradient mt-2">Mihir Tamboli</span>
           </motion.h1>
           
@@ -146,21 +146,27 @@ const Hero = () => {
             variants={itemVariants}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 min-h-[80px] sm:min-h-[100px] flex items-center justify-center flex-wrap"
           >
-            <span className="text-text-secondary mr-3">I'm a</span>
+            <span className="text-text-secondary mr-3">I’m a</span>
             <span className="text-gradient-2 inline-block min-w-[250px] sm:min-w-[350px] md:min-w-[450px] text-left">
               {displayText || 'Data Analyst'}
               <span className="inline-block w-1 h-8 bg-electric-blue ml-2 animate-pulse" />
             </span>
           </motion.div>
 
+          {/* Value Proposition */}
+          <motion.p
+            variants={itemVariants}
+            className="text-xl sm:text-2xl md:text-3xl text-text-primary max-w-4xl mx-auto mb-6 px-4 leading-relaxed font-bold"
+          >
+            Building AI-powered data solutions and scalable backend systems that transform data into actionable insights.
+          </motion.p>
+          
           {/* Bio */}
           <motion.p
             variants={itemVariants}
-            className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-4xl mx-auto mb-12 px-4 leading-relaxed"
+            className="text-lg sm:text-xl text-text-secondary max-w-4xl mx-auto mb-12 px-4 leading-relaxed"
           >
-            Computer Science undergraduate with hands-on experience in Python development, 
-            data analysis, backend systems, and AI/ML projects. Passionate about building 
-            intelligent, data-driven solutions and scalable software applications.
+            I'm a Computer Science Engineering student specializing in Data Analytics, AI Engineering, and Backend Development, turning complex data into intelligent solutions.
           </motion.p>
 
           {/* CTA Buttons */}

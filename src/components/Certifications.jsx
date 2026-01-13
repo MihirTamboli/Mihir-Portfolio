@@ -1,22 +1,22 @@
 import { motion } from 'framer-motion'
-import { FaCertificate, FaGoogle, FaGraduationCap, FaNetworkWired, FaAward, FaCloud, FaBrain, FaChartLine } from 'react-icons/fa'
-import { SiAmazonaws } from 'react-icons/si'
+import { FaCertificate, FaAward, FaChartLine, FaBrain, FaCode, FaGraduationCap } from 'react-icons/fa'
+import { SiCoursera, SiIbm } from 'react-icons/si'
 
 const Certifications = () => {
   const certifications = [
     {
-      title: 'AWS',
-      issuer: 'Amazon Web Services',
-      icon: SiAmazonaws,
-      gradient: 'from-orange-500 to-yellow-500',
-      borderGradient: 'from-orange-400 to-yellow-400',
+      title: 'Full Stack Development',
+      issuer: 'Coursera',
+      icon: SiCoursera,
+      gradient: 'from-blue-500 to-cyan-500',
+      borderGradient: 'from-blue-400 to-cyan-400',
     },
     {
-      title: 'Computer Vision',
-      issuer: 'NPTEL',
+      title: 'Machine Learning Specialization',
+      issuer: 'Coursera',
       icon: FaGraduationCap,
-      gradient: 'from-red-500 to-pink-500',
-      borderGradient: 'from-red-400 to-pink-400',
+      gradient: 'from-pink-500 to-rose-500',
+      borderGradient: 'from-pink-400 to-rose-400',
     },
     {
       title: 'Convolutional Neural Networks',
@@ -29,8 +29,8 @@ const Certifications = () => {
       title: 'Data Analytics',
       issuer: 'Google / Coursera',
       icon: FaChartLine,
-      gradient: 'from-blue-500 to-cyan-500',
-      borderGradient: 'from-blue-400 to-cyan-400',
+      gradient: 'from-emerald-500 to-teal-500',
+      borderGradient: 'from-emerald-400 to-teal-400',
     },
     {
       title: 'Neural Networks and Deep Learning',
@@ -40,18 +40,11 @@ const Certifications = () => {
       borderGradient: 'from-green-400 to-emerald-400',
     },
     {
-      title: 'Google Data Analytics Foundations',
-      issuer: 'Coursera',
-      icon: FaGoogle,
-      gradient: 'from-blue-500 to-cyan-500',
-      borderGradient: 'from-blue-400 to-cyan-400',
-    },
-    {
-      title: 'Cisco Networking Fundamentals',
-      issuer: 'Cisco',
-      icon: FaNetworkWired,
-      gradient: 'from-cyan-500 to-blue-500',
-      borderGradient: 'from-cyan-400 to-blue-400',
+      title: 'Computer Vision',
+      issuer: 'NPTEL',
+      icon: FaBrain,
+      gradient: 'from-violet-500 to-fuchsia-500',
+      borderGradient: 'from-violet-400 to-fuchsia-400',
     },
   ]
 

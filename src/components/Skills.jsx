@@ -1,65 +1,87 @@
 import { motion } from 'framer-motion'
 import { 
   FaPython, 
-  FaJava, 
   FaJs, 
-  FaHtml5, 
+  FaDatabase,
+  FaBrain,
+  FaChartLine,
+  FaHtml5,
   FaCss3Alt,
   FaGitAlt,
-  FaDatabase,
-  FaBrain
+  FaGithub,
+  FaCloud,
+  FaJava,
 } from 'react-icons/fa'
-import { SiFlask, SiTensorflow, SiMysql, SiOpencv, SiKeras } from 'react-icons/si'
+import { 
+  SiTensorflow, 
+  SiFlask, 
+  SiNodedotjs, 
+  SiDjango, 
+  SiReact, 
+  SiTailwindcss, 
+  SiPostman, 
+  SiVisualstudiocode,
+  SiPandas,
+  SiNumpy,
+} from 'react-icons/si'
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: 'Languages',
+      title: 'Programming',
       icon: FaBrain,
       gradient: 'from-blue-500 to-cyan-500',
       skills: [
         { name: 'Python', icon: FaPython, color: 'text-blue-400', glow: 'shadow-blue-500/50' },
-        { name: 'Java', icon: FaJava, color: 'text-orange-400', glow: 'shadow-orange-500/50' },
         { name: 'JavaScript', icon: FaJs, color: 'text-yellow-400', glow: 'shadow-yellow-500/50' },
         { name: 'SQL', icon: FaDatabase, color: 'text-cyan-400', glow: 'shadow-cyan-500/50' },
+        { name: 'Java', icon: FaJava, color: 'text-cyan-400', glow: 'shadow-cyan-500/50' },
       ],
     },
     {
-      title: 'Web Technologies',
-      icon: FaHtml5,
-      gradient: 'from-orange-500 to-red-500',
-      skills: [
-        { name: 'HTML', icon: FaHtml5, color: 'text-orange-400', glow: 'shadow-orange-500/50' },
-        { name: 'CSS', icon: FaCss3Alt, color: 'text-blue-400', glow: 'shadow-blue-500/50' },
-      ],
-    },
-    {
-      title: 'Frameworks & Libraries',
-      icon: SiTensorflow,
+      title: 'AI / Data',
+      icon: FaBrain,
       gradient: 'from-purple-500 to-pink-500',
       skills: [
-        { name: 'Flask', icon: SiFlask, color: 'text-gray-300', glow: 'shadow-gray-500/50' },
+        { name: 'Machine Learning', icon: FaBrain, color: 'text-purple-300', glow: 'shadow-purple-500/50' },
+        { name: 'Deep Learning', icon: FaBrain, color: 'text-pink-300', glow: 'shadow-pink-500/50' },
         { name: 'TensorFlow', icon: SiTensorflow, color: 'text-orange-400', glow: 'shadow-orange-500/50' },
-        { name: 'Keras', icon: SiKeras, color: 'text-red-400', glow: 'shadow-red-500/50' },
-        { name: 'OpenCV', icon: SiOpencv, color: 'text-green-400', glow: 'shadow-green-500/50' },
+        { name: 'Pandas', icon: SiPandas, color: 'text-blue-300', glow: 'shadow-blue-500/50' },
+        { name: 'NumPy', icon: SiNumpy, color: 'text-sky-300', glow: 'shadow-sky-500/50' },
+        { name: 'Data Visualization', icon: FaChartLine, color: 'text-green-300', glow: 'shadow-green-500/50' },
       ],
     },
     {
-      title: 'Databases',
-      icon: FaDatabase,
-      gradient: 'from-cyan-500 to-blue-500',
+      title: 'Backend',
+      icon: SiNodedotjs,
+      gradient: 'from-emerald-500 to-teal-500',
       skills: [
-        { name: 'MySQL', icon: SiMysql, color: 'text-blue-400', glow: 'shadow-blue-500/50' },
+        { name: 'Django', icon: SiDjango, color: 'text-emerald-300', glow: 'shadow-emerald-500/50' },
+        { name: 'Flask', icon: SiFlask, color: 'text-gray-300', glow: 'shadow-gray-500/50' },
+        { name: 'REST APIs', icon: FaCloud, color: 'text-cyan-300', glow: 'shadow-cyan-500/50' },
+        { name: 'Node.js', icon: SiNodedotjs, color: 'text-green-400', glow: 'shadow-green-500/50' },
+      ],
+    },
+    {
+      title: 'Frontend',
+      icon: SiReact,
+      gradient: 'from-indigo-500 to-blue-500',
+      skills: [
+        { name: 'React.js', icon: SiReact, color: 'text-cyan-300', glow: 'shadow-cyan-500/50' },
+        { name: 'HTML', icon: FaHtml5, color: 'text-orange-400', glow: 'shadow-orange-500/50' },
+        { name: 'CSS', icon: FaCss3Alt, color: 'text-blue-400', glow: 'shadow-blue-500/50' },
+        { name: 'Tailwind', icon: SiTailwindcss, color: 'text-sky-300', glow: 'shadow-sky-500/50' },
       ],
     },
     {
       title: 'Tools',
       icon: FaGitAlt,
-      gradient: 'from-gray-500 to-gray-700',
+      gradient: 'from-gray-500 to-slate-600',
       skills: [
         { name: 'Git', icon: FaGitAlt, color: 'text-orange-400', glow: 'shadow-orange-500/50' },
-        { name: 'Google Colab', icon: FaPython, color: 'text-yellow-400', glow: 'shadow-yellow-500/50' },
-        { name: 'Android Studio', icon: FaJava, color: 'text-green-400', glow: 'shadow-green-500/50' },
+        { name: 'GitHub', icon: FaGithub, color: 'text-white', glow: 'shadow-gray-500/50' },
+        { name: 'Postman', icon: SiPostman, color: 'text-orange-300', glow: 'shadow-orange-500/50' },
+        { name: 'VS Code', icon: SiVisualstudiocode, color: 'text-blue-400', glow: 'shadow-blue-500/50' },
       ],
     },
   ]

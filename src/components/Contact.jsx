@@ -120,8 +120,7 @@ const Contact = () => {
           </h2>
           <div className="w-32 h-1.5 bg-gradient-to-r from-transparent via-electric-blue to-transparent mx-auto rounded-full mb-6" />
           <p className="text-text-secondary text-lg max-w-3xl mx-auto leading-relaxed">
-            I'm always open to discussing new opportunities, interesting projects, 
-            or just having a chat about technology and innovation.
+            I’m open to internships, freelance projects, and full-time opportunities in Data Analytics, AI Engineering, and Backend Development. Feel free to reach out.
           </p>
         </motion.div>
 

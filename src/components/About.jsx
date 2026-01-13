@@ -69,22 +69,10 @@ const About = () => {
               </h3>
             </div>
             <p className="text-text-secondary text-lg leading-relaxed">
-              I'm a Computer Science undergraduate passionate about leveraging technology 
-              to solve real-world problems. With hands-on experience in Python development, 
-              I've worked on various projects spanning backend systems, data analysis, and 
-              AI/ML applications.
+              I’m a Computer Science Engineering student passionate about Artificial Intelligence, Data Analytics, and Backend Development. I enjoy transforming complex data into meaningful insights and building smart web applications that help users make better decisions.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
-              My expertise includes building scalable backend solutions, analyzing complex 
-              datasets to extract meaningful insights, and developing intelligent systems 
-              using machine learning frameworks. I'm particularly interested in roles that 
-              combine data-driven decision making with analytical problem-solving.
-            </p>
-            <p className="text-text-secondary text-lg leading-relaxed">
-              I thrive in environments where I can apply my technical skills to create 
-              innovative solutions and contribute to impactful projects. Whether it's 
-              developing robust APIs, training ML models, or designing database schemas, 
-              I bring a detail-oriented and results-driven approach to every challenge.
+              I have hands-on experience developing machine learning models, web-based AI systems, and database-driven applications. I’m constantly exploring new technologies and improving my problem-solving skills to build impactful software solutions.
             </p>
           </motion.div>
 

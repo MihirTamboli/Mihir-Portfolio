@@ -37,8 +37,8 @@ function App() {
     <div className="min-h-screen relative overflow-x-hidden">
       <ParticleBackground />
       <CustomCursor />
+      <Navbar activeSection={activeSection} />
       <div className="relative z-10">
-        <Navbar activeSection={activeSection} />
         <Hero />
         <About />
         <Skills />
